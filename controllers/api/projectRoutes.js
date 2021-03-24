@@ -14,24 +14,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/',async (req,res) => {
-  try{
-    const projectData = await Project.findAll();
 
-    const projects = projectData.map(([project]) =>
-      project.get({ plain: true })
-     
-    );
-  
-    res.render('homepage', {
-      projects,
-   
-  }); 
-} catch(err){
-  console.log(err);
-  res.status(500).json(err);
-}
-});
 
 router.delete('/:id', async (req, res) => {
   try {
