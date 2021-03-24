@@ -23,13 +23,16 @@ router.get('/',async (req,res) => {
   router.get('/:id', async (req,res) => {
     try {
       const projectData = await Project.findByPk(req.params.id)
-      const projects = projectData.map((project) => project.get({plain: true}));
-      res.render({projects});
-  
+      const project = projectData.get({plain: true});
+      console.log(project);
+
+      res.render('project', {project});
+        
       } catch (err) {
         console.log(err);
         res.status(500).json(err);
       }
   })
+
 
   module.exports = router;
